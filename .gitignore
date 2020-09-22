@@ -1,0 +1,5 @@
+/.project
+/target/
+/test/classes/
+/test/report/
+/deploy/

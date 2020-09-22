@@ -1,0 +1,42 @@
+# UNIX Lineending bei Shellscripts / Unix Konfigurationsdateien
+*.sh text eol=lf
+*.cnf text eol=lf
+
+# Binärdateien
+*.exe binary
+*.dll binary
+
+*.p12 binary
+*.jks binary
+*.xdb binary
+*.der binary
+
+*.jar binary
+*.war binary
+*.ear binary
+*.zip binary
+*.7z binary
+
+*.pdf binary
+
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.ppt binary
+*.pptx binary
+
+*.odg binary
+*.odt binary
+
+*.mwb binary
+
+*.eot binary
+*.ttf binary
+*.woff binary
+
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.ico binary

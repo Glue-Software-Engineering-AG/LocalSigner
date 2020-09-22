@@ -1,0 +1,50 @@
+Short documentation for the multiuser functionality:
+
+The following configuration files and folders exist SYSTEMWIDE:
+
+1. 
+
+<LocalSigner Installation>/configuration/init.properties
+
+This property file specifies default values for the configuration. It should ONLY be edited by administrators / e.g. root users. 
+Make sure, that a normal user does not have write access to this file
+
+The value: profilepath specifies the folder where the systemwide configuration is stored!
+
+The values: XXXEditable specify if a normal user can change the particular option or not. (If true, 
+the option can be changed in the configuration GUI of the application later) 
+
+
+2.
+
+<LocalSigner Installation>/resources/profiles
+
+This folder contains the systemwide signature profiles which are available to all users. (The path to this folder is configured in the 
+init.properties - see above point 1).
+
+There are some profiles shipped with the application. Additional profiles can be created and must be stored in this folder to make
+them available systemwide. Profiles can be created either by copy/paste/edit of an existing profile or by creating a signature profile
+with the LocalSigner application itself, store it in the user profile folder (see below) and copy it afterwards into the systemwide
+profile folder (Admin rights needed).
+
+
+The following configuration files and folders exist PER USER:
+
+When the application is started, the following folders and files are created IN THE USERS HOMEDIRECTROY if they do not exist yet:
+
+<user home>/.localsigner
+
+<user home>/.localsigner/userconfiguration.properties
+
+<user home>/.localsigner/profiles 
+
+The userconfiguration.properties file stores the localsigner configuration for the current user. All changes done inside the config
+GUI inside the application is stored in this file. 
+It is NOT recommended to edit it manually!
+At start up, the configuration values of the system wide configuration are taken as default, except the path to the profiles!
+
+In the profiles folder, the users signature profiles are stored. This folder can be changed in the GUI config.
+
+
+
+  

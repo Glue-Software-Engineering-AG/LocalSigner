@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+Why are some libs (BC, SWT) not added flat to the jar? BC is already signed
+(see files in the respective jars -> /META-INF/*.RSA). SWT is
+plattform dependant. The localsigner.jar is then signed.
+-->
+<project name="localsigner" default="help" basedir=".">
+
+	<property name="failOnError" value="yes" />
+
+	<property name="http.proxyHost" value="" />
+	<property name="http.proxyPort" value="" />
+
+	<property name="source_java_version" value="1.8" />
+	<property name="target_java_version" value="1.8" />
+	<property name="local_signer_version" value="4.2.10" />
+
+	<property name="target_dir_linux" value="target/linux" />
+	<property name="deploy_dir_linux" value="deploy/linux" />
+
+	<property name="win64_resources" value="resources/windows/win64" />
+
+	<property name="target_dir_win64" value="target/win64" />
+
+	<property name="deploy_dir_win64" value="deploy/win64" />
+
+	<property name="version" value="${local_signer_version}" />
+
+	<path id="classpath.base">
+		<fileset dir="lib">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	<path id="classpath.test">
+		<fileset dir="test/lib">
+			<include name="**/*.jar"/>
+		</fileset>
+		<pathelement location="test/classes" />
+		<pathelement location="test/files" />
+		<path refid="classpath.base" />
+	</path>
+	
+	<!-- macro to check if file exists -->
+	<macrodef name="assertFileAvailable">
+	    <attribute name="file" />
+	    <sequential>
+	        <fail message="The file '@{file}' was expected to be available but is not. See README.md for more details">
+	            <condition>
+	                <not>
+	                    <available file="@{file}" type="file" />
+	                </not>
+	            </condition>
+	        </fail>
+	    </sequential>
+	</macrodef>
+
+	<!-- check for required bfo pdf libararies -->
+	<property name="bfopdf-jj2000" value="lib/bfopdf-jj2000.jar"/>
+	<property name="bfopdf" value="lib/bfopdf-2.24.2.jar"/>
+	
+	<assertFileAvailable file="${bfopdf-jj2000}" />
+	<assertFileAvailable file="${bfopdf}" />
+
+	<target name="clean">
+		<delete dir="target" />
+		<delete dir="deploy" />
+		<mkdir dir="deploy" />
+	</target>
+
+	<target name="repack" depends="test">
+		<mkdir dir="target/classes" />
+
+		<!-- compile java code -->
+		<javac srcdir="src" debug="true" destdir="target/classes" source="${source_java_version}" target="${target_java_version}" classpathref="classpath.base" bootclasspath="${java.home}/lib/rt.jar"
+           includeantruntime="false"  encoding="UTF-8"/>
+		<delete dir="target/classes/test" />
+
+		<tstamp>
+			<format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss" />
+		</tstamp>
+
+		<!-- pack all classes in jar -->
+		<jar jarfile="target/localsigner-excludeSignatures.jar">
+			<zipgroupfileset dir="lib" excludes="junit*.jar, *.properties, swt*.jar, bc*.jar, *.txt"/>
+			<!-- TODO LOCALSIG-226: add swt depending on architecture and os; not generally here -->
+		</jar>
+		<jar jarfile="target/external.jar">
+			<zipgroupfileset dir="lib" includes="bfopdf*.jar, CocoaUIEnhancer.jar, commons-*.jar, openpdf*.jar, jackson-core*.jar, jersey-*.jar, jsr*.jar, log4j*.jar, *box*.jar, *flight*.jar, joda-time*.jar, jai*.jar, proxy-vole*.jar, jna*.jar, jna-platform*.jar, pdfa-validator-vera-*-jar-with-dependencies.jar, cantonal-seal-bundle*.jar, slf4j-api*.jar, delight-nashorn-sandbox-*.jar, js-beautify-*.jar, slf4j-log4j12-*.jar " />
+		</jar>
+
+		<jar jarfile="target/localsigner.jar" filesetmanifest="skip" update="true" duplicate="fail">
+			<!-- manifest -->
+			<manifest>
+				<attribute name="Main-Class" value="ch.admin.localsigner.main.LocalSigner" />
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-Version" value="${version}" />
+				<attribute name="Built-Date" value="${TODAY}" />
+			</manifest>
+
+			<!-- resources -->
+			<fileset dir="target/classes" />
+			<fileset file="src/*.properties" />
+			<fileset file="src/*.gif" />
+			<fileset file="src/*.png" />
+			<fileset file="src/*.jks" />
+
+			<!-- libraries -->
+			<zipfileset src="target/localsigner-excludeSignatures.jar" excludes="META-INF/**" />
+			<zipfileset src="target/localsigner-excludeSignatures.jar" includes="META-INF/services/**" />
+			<zipfileset src="target/localsigner-excludeSignatures.jar" includes="META-INF/resources/**" />
+		</jar>
+
+		<!-- clean up -->
+		<delete file="target/localsigner-excludeSignatures.jar" />
+	</target>
+
+	<target name="dist" depends="clean, repack">
+		<!-- copy needed resources -->
+		<copy todir="target/zip/lib/">
+			<fileset file="lib/bc*.jar" />
+			<fileset dir="target">
+				<include name="localsigner.jar" />
+			</fileset>
+		</copy>
+		<copy todir="target/zip/resources/">
+			<fileset dir="resources/">
+				<include name="egov/**" />
+				<include name="examples/**" />
+				<include name="profiles/**" />
+			</fileset>
+		</copy>
+		<copy todir="target/zip/language">
+			<fileset dir="language/" />
+		</copy>
+		<copy todir="target/zip/configuration">
+			<fileset dir="configuration/" />
+		</copy>
+	</target>
+
+	<target name="windows" depends="dist">
+
+		<mkdir dir="${target_dir_win64}"/>
+
+		<copy todir="${target_dir_win64}">
+			<fileset dir="target/zip" />
+			<fileset dir="${win64_resources}" />
+		</copy>
+
+		<zip destfile="${deploy_dir_win64}/localsigner_${version}_windows_64bit.zip">
+			<zipfileset dir="${target_dir_win64}/" prefix="LocalSigner" />
+		</zip>
+
+	</target>
+
+	<target name="linux" depends="dist">
+		<!-- fork dist folder -->
+		<copy todir="${target_dir_linux}">
+			<fileset dir="target/zip" />
+		</copy>
+
+		<copy todir="${target_dir_linux}" overwrite="true">
+			<fileset dir="resources/linux" />
+		</copy>
+
+		<!-- modify configuration -->
+		<replace file="${target_dir_linux}/configuration/init.properties" token="fontsize = 8" value="fontsize = 10"/>
+		<replace file="${target_dir_linux}/configuration/init.properties" token="internalviewer = dual" value="internalviewer = true"/>
+
+		<!-- create tar.gz -->
+		<tar destfile="${deploy_dir_linux}/localsigner_${version}_linux.tar.gz" compression="gzip" longfile="gnu">
+			<tarfileset dir="${target_dir_linux}" mode="755" prefix="LocalSigner">
+				<include name="**/localsigner.sh" />
+			</tarfileset>
+			<tarfileset dir="${target_dir_linux}" prefix="LocalSigner">
+				<exclude name="**/localsigner.sh" />
+			</tarfileset>
+		</tar>
+	</target>
+
+	<target name="all" depends="clean, windows, linux" />
+
+	<target name="help">
+		<echo>
+      Available tasks for LocalSigner:
+
+      all
+        build all versions
+      windows
+        build for Microsoft Windows 64bit without JRE
+      linux
+        build for Linux (requires JRE)
+
+    </echo>
+	</target>
+
+	<target name="test" unless="skipTests">
+		<delete dir="test/classes" />
+		<mkdir dir="test/report" />
+		<mkdir dir="test/classes" />
+
+		<javac srcdir="src" destdir="test/classes" classpathref="classpath.base" includeantruntime="false" source="${source_java_version}" target="${target_java_version}" />
+
+		<javac srcdir="test/src" destdir="test/classes" debug="true" deprecation="true" includeantruntime="false"
+           encoding="UTF-8" classpathref="classpath.test" source="${source_java_version}" target="${target_java_version}" />
+
+		<junit printsummary="yes" haltonfailure="${failOnError}" failureproperty="test.failed" showoutput="yes">
+			<sysproperty key="http.proxyHost" value="${http.proxyHost}"/>
+			<sysproperty key="http.proxyPort" value="${http.proxyPort}"/>
+
+			<formatter type="plain" />
+			<formatter type="xml"/>
+			<classpath refid="classpath.test" />
+			<batchtest fork="yes" todir="test/report">
+				<fileset dir="test/src">
+					<include name="**/*.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<!-- http://docs.codehaus.org/display/SONAR/Advanced+parameters -->
+	<property name="sonar.host.url" value="http://localhost:9000" />
+	<property name="sonar.java.source" value="${source_java_version}" />
+	<property name="sonar.java.target" value="${target_java_version}" />
+
+	<!-- Sonar -->
+	<property name='sonar.surefire.reportsPath' value="test"/>
+	<property name='sonar.dynamicAnalysis' value="reuseReports"/>
+	<target name="sonar">
+		<property name='sonar.sources' value="src"/>
+		<property name='sonar.tests' value="test/src"/>
+		<property name='sonar.binaries' value="lib"/>
+		<property name="sonar.projectName" value="LocalSigner" />
+		<property name="sonar.java.binaries" value="test/classes"/>
+
+		<sonar:sonar key="ch.admin.localsigner:localsigner" version="${version}" xmlns:sonar="antlib:org.sonar.ant" />
+	</target>
+
+
+	
+</project>
+
+<!--
+     vim: tabstop=2:softtabstop=2:shiftwidth=2:expandtab
+-->

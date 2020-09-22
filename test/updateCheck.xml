@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<release>
+	<windows>
+		<version>2.5.0</version>
+		<date>19. November 2010</date>
+		<description>
+			<de>Dies ist der neue LocalSigner&#xD;zweite Linie</de>
+			<en>This is the new LocalSigner</en>
+			<fr>C'est le nouveaux LocalSigner</fr>
+			<it>Questo è il nuovo LocalSigner</it>
+		</description>
+		<downloadLink>text for auto update</downloadLink>
+		<downloadPage>
+			<de>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</de>
+			<en>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</en>
+			<fr>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</fr>
+			<it>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</it>
+		</downloadPage>
+	</windows>
+	<mac>
+		<version>2.4.1</version>
+		<date>4. August 2010</date>
+		<description>
+			<de>Dies ist der neue LocalSigner</de>
+			<en>This is the new LocalSigner</en>
+			<fr>C'est le nouveaux LocalSigner</fr>
+			<it>Questo è il nuovo LocalSigner</it>
+		</description>
+		<downloadLink>text for auto update</downloadLink>
+		<downloadPage>
+			<de>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</de>
+			<en>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</en>
+			<fr>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</fr>
+			<it>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</it>
+		</downloadPage>
+	</mac>
+	<linux>
+		<version>2.3.0</version>
+		<date>4. Juni 2010</date>
+		<description>
+			<de>Dies ist der neue LocalSigner</de>
+			<en>This is the new LocalSigner</en>
+			<fr>C'est le nouveaux LocalSigner</fr>
+			<it>Questo è il nuovo LocalSigner</it>
+		</description>
+		<downloadLink>text for auto update</downloadLink>
+		<downloadPage>
+			<de>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</de>
+			<en>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</en>
+			<fr>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</fr>
+			<it>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</it>
+		</downloadPage>
+	</linux>
+	<solaris>
+		<version>2.3.0</version>
+		<date>4. Juni 2010</date>
+		<description>
+			<de>Dies ist der neue LocalSigner</de>
+			<en>This is the new LocalSigner</en>
+			<fr>C'est le nouveaux LocalSigner</fr>
+			<it>Questo è il nuovo LocalSigner</it>
+		</description>
+		<downloadLink>text for auto update</downloadLink>
+		<downloadPage>
+			<de>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</de>
+			<en>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</en>
+			<fr>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</fr>
+			<it>http://www.e-service.admin.ch/wiki/display/suispublic/Open+eGov+LocalSigner+Installation
+			</it>
+		</downloadPage>
+	</solaris>
+</release>

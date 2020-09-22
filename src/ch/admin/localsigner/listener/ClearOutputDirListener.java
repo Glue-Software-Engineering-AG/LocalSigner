@@ -1,0 +1,69 @@
+/*
+ * Copyright 2020 The Federal Authorities of the Swiss Confederation
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package ch.admin.localsigner.listener;
+
+import ch.admin.localsigner.gui.MainGUI;
+import ch.admin.localsigner.gui.profile.PropertiesGUI;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
+
+/**
+ * This listener gets called when the user clicks on the delete button to delete
+ * the currently entered output path.
+ * @author boris
+ * @author $Author$
+ * @version $Revision$
+ */
+public class ClearOutputDirListener implements Listener {
+
+  private static final Logger LOGGER = Logger
+      .getLogger(ClearOutputDirListener.class);
+
+  private final PropertiesGUI propertiesGui;
+  private final MainGUI maingui;
+
+  /**
+   * Constructor
+   * @param propertiesGui
+   *          The properties GUI
+   * @param maingui
+   *          The main GUI
+   */
+  public ClearOutputDirListener(final PropertiesGUI propertiesGui,
+      final MainGUI maingui) {
+
+    this.maingui = maingui;
+    this.propertiesGui = propertiesGui;
+  }
+
+  /**
+   * Handle listener event.
+   * @param event
+   */
+  @Override
+  public void handleEvent(final Event event) {
+    LOGGER.debug("Clear pressed");
+
+    // clear output directory
+    propertiesGui.setOutputDir(StringUtils.EMPTY);
+
+    // if an output file is already set replace its output directory
+    // with the default
+    maingui.setOutputFile(maingui.getDocument().proposeOutputNameFinal(), false);
+  }
+}

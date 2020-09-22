@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<release>
+	<windows>
+		<version>3.2.1</version>
+		<date>29. Februar 2016</date>
+		<description>
+			<de>Signatur ohne Text (Nur-Bild)&#xD;Positionierung nachfolgender Signaturen&#xD;Einbindung von QuoVadis SuisseID Signing Service (Windows)&#xD;Korrektur Validierung Zulassungsbestätigung</de>
+			<en>Signature without Text (Image-only)&#xD;Positioning of subsequent signatures&#xD;Possibility to use QuoVadis SuisseID Signing Service (Windows)&#xD;Bugfix for validating notary signatures</en>
+			<fr>Signature sans texte (image uniquement)&#xD;positionnement des signatures subséquentes&#xD;intégration du SuisseID Signing Service de QuoVadis (Windows)&#xD;correction de la vérification fonctionnelle</fr>
+			<it>Firma senza testo (solo foto)&#xD;Posizionamento firme successive&#xD;integrazione di SuisseID Signing Service di QuoVadis (Windows)&#xD;Correzione de la verifica funzionale</it>
+		</description>
+		<downloadLink>text for auto update</downloadLink>
+		<downloadPage>
+			<de>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</de>
+			<en>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</en>
+			<fr>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</fr>
+			<it>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</it>
+		</downloadPage>
+	</windows>
+	<mac>
+		<version>3.2.1</version>
+		<date>29. Februar 2016</date>
+		<description>
+			<de>Signatur ohne Text (Nur-Bild)&#xD;Positionierung nachfolgender Signaturen&#xD;Einbindung von QuoVadis SuisseID Signing Service (Windows)&#xD;Korrektur Validierung Zulassungsbestätigung</de>
+			<en>Signature without Text (Image-only)&#xD;Positioning of subsequent signatures&#xD;Possibility to use QuoVadis SuisseID Signing Service (Windows)&#xD;Bugfix for validating notary signatures</en>
+			<fr>Signature sans texte (image uniquement)&#xD;positionnement des signatures subséquentes&#xD;intégration du SuisseID Signing Service de QuoVadis (Windows)&#xD;correction de la vérification fonctionnelle</fr>
+			<it>Firma senza testo (solo foto)&#xD;Posizionamento firme successive&#xD;integrazione di SuisseID Signing Service di QuoVadis (Windows)&#xD;Correzione de la verifica funzionale</it>
+		</description>
+		<downloadLink>text for auto update</downloadLink>
+		<downloadPage>
+			<de>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</de>
+			<en>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</en>
+			<fr>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</fr>
+			<it>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</it>
+		</downloadPage>
+	</mac>
+	<linux>
+		<version>3.2.1</version>
+		<date>29. Februar 2016</date>
+		<description>
+			<de>Signatur ohne Text (Nur-Bild)&#xD;Positionierung nachfolgender Signaturen&#xD;Einbindung von QuoVadis SuisseID Signing Service (Windows)&#xD;Korrektur Validierung Zulassungsbestätigung</de>
+			<en>Signature without Text (Image-only)&#xD;Positioning of subsequent signatures&#xD;Possibility to use QuoVadis SuisseID Signing Service (Windows)&#xD;Bugfix for validating notary signatures</en>
+			<fr>Signature sans texte (image uniquement)&#xD;positionnement des signatures subséquentes&#xD;intégration du SuisseID Signing Service de QuoVadis (Windows)&#xD;correction de la vérification fonctionnelle</fr>
+			<it>Firma senza testo (solo foto)&#xD;Posizionamento firme successive&#xD;integrazione di SuisseID Signing Service di QuoVadis (Windows)&#xD;Correzione de la verifica funzionale</it>
+		</description>
+		<downloadLink>text for auto update</downloadLink>
+		<downloadPage>
+			<de>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</de>
+			<en>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</en>
+			<fr>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</fr>
+			<it>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</it>
+		</downloadPage>
+	</linux>
+	<solaris>
+		<version>2.3.0</version>
+		<date>4. Juni 2010</date>
+		<description>
+			<de>Dies ist der neue LocalSigner</de>
+			<en>This is the new LocalSigner</en>
+			<fr>C'est le nouveaux LocalSigner</fr>
+			<it>Questo è il nuovo LocalSigner</it>
+		</description>
+		<downloadLink>text for auto update</downloadLink>
+		<downloadPage>
+			<de>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</de>
+			<en>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</en>
+			<fr>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</fr>
+			<it>http://www.e-service.admin.ch/wiki/display/openegovdoc/LocalSigner+Download
+			</it>
+		</downloadPage>
+	</solaris>
+</release>
